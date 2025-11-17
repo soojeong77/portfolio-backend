@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>관리자 로그인</title>
+  <style>
+    /* 폰트 설정 */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;600&display=swap');
+
+    body {
+      font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #222;
+    }
+
+    form {
+      max-width: 350px;
+      width: 100%;
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
+      box-sizing: border-box;
+      transition: transform 0.3s ease; 
+    }
+
+    form:hover {
+      transform: translateY(-2px);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #222;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 12px 15px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus {
+      border-color: #ff3b00;
+      box-shadow: 0 0 0 3px rgba(255, 59, 0, 0.2); 
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 17px;
+      background-color: #ff3b00;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.1s;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    button:hover {
+      background-color: #cc2e00;
+    }
+
+    button:active {
+      transform: scale(0.99);
+    }
+
+    .error {
+      /* 수정된 부분: 배경색, 테두리 제거 */
+      color: #e74c3c;
+      background-color: transparent; 
+      border: none;
+      
+      margin-top: 15px;
+      padding: 0; 
+      text-align: center;
+      font-size: 14px;
+      min-height: 18px; 
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="loginForm" autocomplete="off" spellcheck="false">
+    <h2>관리자 로그인</h2>
+    <input type="text" id="username" placeholder="아이디" required autofocus />
+    <input type="password" id="password" placeholder="비밀번호" required />
+    <button type="submit">로그인</button>
+    <div class="error" id="errorMsg"></div>
+  </form>
+
+  <script>
+    const adminID = "soojeong77";
+    const adminPW = "1234";
+
+    const form = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('errorMsg');
+    
+    // 초기에는 오류 메시지 숨김
+    errorMsg.textContent = "";
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if(username === adminID && password === adminPW) {
+        window.location.href = "admin.html";
+      } else {
+        // 실패 시에만 메시지 표시
+        errorMsg.textContent = "아이디 또는 비밀번호가 잘못되었습니다.";
+      }
+    });
+  </script>
+
+</body>
+</html>

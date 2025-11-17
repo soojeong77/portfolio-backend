@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: sans-serif; padding:40px; }
+    input { display:block; margin:10px 0; padding:8px; width:200px; }
+    button { padding:8px 16px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <h2>회원가입</h2>
+  <input id="id" placeholder="아이디">
+  <input id="pw" type="password" placeholder="비밀번호">
+  <button onclick="signup()">가입하기</button>
+
+  <script>
+    function signup() {
+      const id = document.getElementById('id').value.trim();
+      const pw = document.getElementById('pw').value.trim();
+
+      if (!id || !pw) {
+        alert("아이디와 비밀번호를 입력하세요.");
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem('users') || "{}");
+
+      if (users[id]) {
+        alert("이미 존재하는 아이디입니다.");
+        return;
+      }
+
+      users[id] = { id, pw };
+      localStorage.setItem('users', JSON.stringify(users));
+
+      alert("회원가입 완료! 로그인 페이지로 이동합니다.");
+      location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

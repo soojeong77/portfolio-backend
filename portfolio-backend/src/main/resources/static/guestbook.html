@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>방명록</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: sans-serif; padding: 40px; }
+    textarea { display:block; margin:10px 0; width:300px; height:100px; }
+    button { padding:8px 16px; cursor:pointer; }
+    .post { border:1px solid #ccc; padding:10px; margin-top:10px; width:320px; }
+  </style>
+</head>
+<body>
+  <h2>방명록</h2>
+  <p id="user-info"></p>
+  <textarea id="content" placeholder="메시지를 입력하세요"></textarea>
+  <button onclick="writePost()">등록</button>
+  <button onclick="logout()">로그아웃</button>
+
+  <div id="posts"></div>
+
+  <script>
+    // 로그인 안 한 경우 접근 차단
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+      alert("로그인이 필요합니다.");
+      location.href = "login.html";
+    }
+
+    const user = JSON.parse(localStorage.getItem('user'));
+    document.getElementById('user-info').textContent = `로그인 중: ${user.id}`;
+
+    // 글쓰기
+    function writePost() {
+      const content = document.getElementById('content').value.trim();
+      if (!content) return alert("내용을 입력하세요.");
+
+      const posts = JSON.parse(localStorage.getItem('posts')) || [];
+      posts.push({ id: user.id, content });
+      localStorage.setItem('posts', JSON.stringify(posts));
+      document.getElementById('content').value = "";
+      loadPosts();
+    }
+
+    // 글 목록 불러오기
+    function loadPosts() {
+      const posts = JSON.parse(localStorage.getItem('posts')) || [];
+      const div = document.getElementById('posts');
+      div.innerHTML = posts.map(p => `
+        <div class="post">
+          <strong>${p.id}</strong><br>${p.content}
+        </div>
+      `).join('');
+    }
+
+    // 로그아웃
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+      location.href = "login.html";
+    }
+
+    loadPosts();
+  </script>
+</body>
+</html>
