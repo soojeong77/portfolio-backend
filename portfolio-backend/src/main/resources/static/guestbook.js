@@ -69,4 +69,9 @@ if (guestbookForm) {
             } else {
                 alert('작성 실패: 서버 로그 확인');
             }
-        } catch
+        } catch (error) {
+            console.error('방명록 작성 중 오류 발생:', error);
+            alert('방명록 작성 중 오류가 발생했습니다.');
+        }
+    });
+}
