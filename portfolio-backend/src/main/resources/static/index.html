@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>수정의 포트폴리오</title>
-    <link rel="stylesheet" href="style.css" />
-    </head>
+    <link rel="stylesheet" href="/style.css" />
+</head>
 <body>
     <header>
         <nav>
@@ -15,7 +15,8 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#guestbook">Guestbook</a></li> <li><a href="login.html">Login</a></li>
+                <li><a href="#guestbook">Guestbook</a></li>
+                <li><a href="login.html">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -23,7 +24,7 @@
     <main>
         <section id="about">
             <h2>About Me</h2>
-            <img src="profile.jpg" alt="프로필 사진" />
+            <img src="/profile.jpg" alt="프로필 사진" />
             <p><strong>이름:</strong> 수정</p>
             <p><strong>이메일:</strong> soojeong0905@naver.com</p>
             <p>안녕하세요! 프론트엔드/백엔드 개발자 수정입니다 :)</p>
@@ -56,7 +57,7 @@
             <h2>Portfolio</h2>
             <div class="portfolio-container">
                 <div class="project-card">
-                    <img src="project1.png" alt="프로젝트 이미지" />
+                    <img src="/project1.png" alt="프로젝트 이미지" />
                     <h3>프로젝트 제목</h3>
                     <p>프로젝트 설명이 여기에 들어갑니다.</p>
                     <p><strong>기술 스택:</strong> HTML, CSS, JS</p>
@@ -67,7 +68,7 @@
                 </div>
 
                 <div class="project-card">
-                    <img src="project2.png" alt="프로젝트 이미지" />
+                    <img src="/project2.png" alt="프로젝트 이미지" />
                     <h3>두번째 프로젝트</h3>
                     <p>두번째 프로젝트 설명</p>
                     <p><strong>기술 스택:</strong> SpringBoot, Oracle</p>
@@ -102,24 +103,12 @@
                 <p style="text-align: center; color: #777; padding: 20px;">방명록 데이터를 불러오는 중...</p>
             </div>
         </section>
-        </main>
+    </main>
 
     <footer>
         Copyright &copy; 2025 Soojeong. All rights reserved.
     </footer>
-    
+
     <script src="/guestbook.js"></script>
-    <script>
-        // DOM 콘텐츠가 완전히 로드된 후 방명록 목록을 불러오는 함수를 실행합니다.
-        document.addEventListener('DOMContentLoaded', () => {
-             // guestbook.js 파일에 정의된 함수 호출
-             if (typeof fetchGuestbooks === 'function') {
-                fetchGuestbooks();
-             } else {
-                 console.error("fetchGuestbooks 함수를 찾을 수 없습니다. guestbook.js 파일을 확인하세요.");
-                 document.getElementById('guestbookList').innerHTML = '<p style="text-align: center; color: red; padding: 20px;">JavaScript 파일 로드 오류</p>';
-             }
-        });
-    </script>
 </body>
 </html>
