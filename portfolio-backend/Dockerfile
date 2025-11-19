@@ -2,8 +2,8 @@
 FROM gradle:7.6-jdk17 AS build
 WORKDIR /home/gradle/project
 
-# Gradle 빌드 파일과 src만 복사
-COPY build.gradle settings.gradle gradle.properties ./ 
+# Gradle 빌드 파일 복사 (gradle.properties 없이)
+COPY build.gradle settings.gradle ./
 COPY src ./src
 
 # 빌드
