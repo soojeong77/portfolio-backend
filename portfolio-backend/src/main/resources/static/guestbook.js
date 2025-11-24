@@ -1,5 +1,8 @@
-// 로컬 백엔드 주소 (9001 포트)로 변경 - 이 한 줄만 바꿨습니다.
-const API_URL = 'http://localhost:9001/api/guestbook';
+// **수정된 API 주소**입니다. 백엔드 서비스의 Render URL을 사용해야 합니다.
+// 백엔드 URL: https://portfolio-backend-787n.onrender.com (로그에서 확인된 URL)
+const API_URL = 'https://portfolio-backend-787n.onrender.com/api/guestbook';
+
+// 프론트엔드 코드의 나머지 부분은 그대로 유지됩니다.
 
 document.addEventListener('DOMContentLoaded', () => {
     const guestbookList = document.getElementById('guestbookList');
@@ -8,14 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // 방명록 목록 조회
     async function fetchGuestbooks() {
         try {
+            // 로딩 상태 메시지 표시
             guestbookList.innerHTML = '<p style="text-align: center; color: #777; padding: 20px;">데이터를 불러오는 중...</p>';
+            
+            // Render 서버로 요청을 보냅니다.
             const response = await fetch(API_URL, { credentials: 'include' });
+            
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            
             const messages = await response.json();
             renderGuestbooks(messages);
         } catch (error) {
             console.error('방명록 데이터를 불러오는 중 오류 발생:', error);
-            guestbookList.innerHTML = '<p style="text-align: center; color: red; padding: 20px;">방명록 서버 연결에 실패했습니다.</p>';
+            // 오류 시 표시되는 메시지
+            guestbookList.innerHTML = '<p style="text-align: center; color: red; padding: 20px;">방명록 서버 연결에 실패했습니다. (주소 오류 또는 콜드 스타트)</p>';
         }
     }
 
@@ -105,12 +114,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 });
-
-
-### 🚀 최종 테스트 다시 시작
-
-1.  `guestbook.js` 파일을 위 코드로 **교체하고 저장**합니다.
-2.  백엔드 서버(`PortfolioBackendApplication.java`)가 **9001 포트에서 실행 중인지** 확인합니다.
-3.  프론트엔드 웹페이지를 **새로고침**하고 방명록에 접속합니다.
-
-이제 프론트엔드가 로컬 서버에 연결되어야 합니다. 결과를 알려주세요! 정말 미안합니다.
