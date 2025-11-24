@@ -1,5 +1,5 @@
-// Render 백엔드 주소
-const API_URL = 'https://portfolio-backend-787n.onrender.com/api/guestbook';
+// 로컬 백엔드 주소 (9001 포트)로 변경 - 이 한 줄만 바꿨습니다.
+const API_URL = 'http://localhost:9001/api/guestbook';
 
 document.addEventListener('DOMContentLoaded', () => {
     const guestbookList = document.getElementById('guestbookList');
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    alert('방명록이 작성되었습니다!');
+                    alert('방명록이 작성되었습니다!'); 
                     guestbookForm.reset();
                     fetchGuestbooks();
                 } else {
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 삭제 함수 전역에 노출 (버튼 onclick용)
     window.deleteGuestbook = async function(gId) {
-        const password = prompt('삭제용 비밀번호를 입력하세요:');
+        const password = prompt('삭제용 비밀번호를 입력하세요:'); 
         if (!password) return;
 
         try {
@@ -105,3 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 });
+
+
+### 🚀 최종 테스트 다시 시작
+
+1.  `guestbook.js` 파일을 위 코드로 **교체하고 저장**합니다.
+2.  백엔드 서버(`PortfolioBackendApplication.java`)가 **9001 포트에서 실행 중인지** 확인합니다.
+3.  프론트엔드 웹페이지를 **새로고침**하고 방명록에 접속합니다.
+
+이제 프론트엔드가 로컬 서버에 연결되어야 합니다. 결과를 알려주세요! 정말 미안합니다.

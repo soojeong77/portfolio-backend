@@ -1,7 +1,7 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.5.7'
-	id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'org.springframework.boot' version '3.5.7'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.soojeong.portfolio'
@@ -9,21 +9,43 @@ version = '0.0.1-SNAPSHOT'
 description = 'Demo project for Spring Boot'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // ----------------------------------------------------
+    // ✨ 필수 추가 및 수정 항목
+    // ----------------------------------------------------
+    
     implementation 'org.springframework.boot:spring-boot-starter'
+    
+    // 1. 웹 MVC 및 REST API (기존 'spring-boot-starter' 대신 사용 권장)
+    implementation 'org.springframework.boot:spring-boot-starter-web' 
+    
+    // 2. Spring Data JPA (DB 접근 및 Entity 관리를 위한 핵심)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' 
+    
+    // 3. PostgreSQL 드라이버 (Render DB 접속용)
+    runtimeOnly 'org.postgresql:postgresql' 
+    
+    // 4. Spring Security (BCryptPasswordEncoder 사용을 위해 필수)
+    implementation 'org.springframework.boot:spring-boot-starter-security' 
+    
+    // 5. Lombok (선택 사항 - Getter/Setter 자동 생성용. 사용한다면 추가)
+    // compileOnly 'org.projectlombok:lombok'
+    // annotationProcessor 'org.projectlombok:lombok'
+
+    // ----------------------------------------------------
+    
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
